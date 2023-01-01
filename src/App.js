@@ -1,34 +1,50 @@
-import React from 'react';
+import { Component } from "react"; 
+import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
 
-function App() {
-  return (
-    <div className="flex flex-col h-full items-center justify-center bg-gray-200 text-gray-700">
-      <div className="flex items-center">
-        <h1 className="text-6xl font-thin tracking-wider">Create React App + Tailwind CSS</h1>
+class App extends Component {
+  constructor() {
+      super();
+      this.state = {
+        monsters: [],
+        searchField:''
+      };
+    }
+
+    componentDidMount() {
+      fetch("https://jsonplaceholder.typicode.com/users")
+       .then(response => response.json())
+       .then(data => this.setState(() => {
+         return {
+           monsters: data
+         };
+       }));
+    }
+
+    // Getting search input value and updating searchField variable value
+    onSearchChange = (event) => {
+      const searchField = event.target.value.toLocaleLowerCase();
+      this.setState(() => {
+        return {searchField};
+        });
+    }
+
+  render() {
+    const { monsters, searchField } = this.state;
+     const { onSearchChange } = this;
+    // Filtering monsters array based on seach input field value
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
+    });
+
+    return (
+      <div className="flex flex-col h-full items-center justify-center bg-gray-200 text-gray-700">
+        <SearchBox onChangeHandler={onSearchChange} placeholder='Search Monsters' className='search-box' />
+       <CardList monsters={filteredMonsters} />
       </div>
-      <p className="my-6 tracking-wide">
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <div className="mt-6 flex justify-center">
-        <a
-          className="uppercase hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="ml-10 uppercase hover:underline"
-          href="https://tailwindcss.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Tailwind
-        </a>
-      </div>
-    </div>
-  );
+    );
+  }
+ 
 }
 
 export default App;
