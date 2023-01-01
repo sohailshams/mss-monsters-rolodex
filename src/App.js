@@ -39,9 +39,10 @@ class App extends Component {
 
     return (
       <div className="min-h-full items-center bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-700">
+        <div className="max-w-[90%] mx-auto">
         <SearchBox onChangeHandler={onSearchChange} placeholder='Search Monsters' className='search-box' />
        <CardList monsters={filteredMonsters} />
-      </div>
+      </div></div>
     );
   }
  
