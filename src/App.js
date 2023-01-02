@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div className="min-h-full items-center bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-700">
         <div className="max-w-[90%] mx-auto">
-          <h1 className="text-center py-16 font-bold text-[30px]">Monster Rolodex</h1>
+          <h1 className="text-center py-16 font-bold text-[30px] font-['Neucha']">Monster Rolodex</h1>
         <SearchBox onChangeHandler={onSearchChange} placeholder='Search Monsters' className='search-box' />
        <CardList monsters={filteredMonsters} />
       </div></div>
