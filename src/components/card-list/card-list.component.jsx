@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import Card from '../card/card.component';
 
 const CardList = ({monsters}) => (
