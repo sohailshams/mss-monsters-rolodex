@@ -1,6 +1,11 @@
 import Card from '../card/card.component';
+import { Monster } from '../../App';
 
-const CardList = ({monsters}) => (
+type CardListProps = {
+    monsters: Monster[]
+}
+
+const CardList = ({monsters}: CardListProps) => (
        
     <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
 
